@@ -221,18 +221,15 @@
   }
   .sns-row{
     display:flex;
-    flex-wrap: wrap;
-    gap: 8px;
+    flex-direction: column;
+    gap: 4px;
     margin-bottom: 10px;
+    font-size: 12.5px;
   }
-.sns-link{
-    display:inline-block;
-    font-size: 12px;
+  .sns-item{ color: var(--ink-soft); }
+  .sns-link{
+    color: #e6396a;
     font-weight: 700;
-    color: #c9385a;
-    background: var(--accent-soft);
-    padding: 6px 12px;
-    border-radius: 999px;
     text-decoration: none;
   }
   .comment{
@@ -409,7 +406,7 @@ function render(){
         </div>
         ${(p.sns && p.sns.length) ? `
         <div class="sns-row">
-          ${p.sns.map(s => `<a class="sns-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.label}</a>`).join("")}
+          ${p.sns.map(s => `<div class="sns-item">${s.platform} <a class="sns-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.handle}</a></div>`).join("")}
         </div>` : ""}
         <div class="comment">${p.comment}</div>
       </div>
