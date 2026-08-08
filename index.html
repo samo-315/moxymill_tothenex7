@@ -219,14 +219,6 @@
     font-size: 10.5px;
     letter-spacing: .04em;
   }
-  .sns-row{
-    display:flex;
-    flex-direction: column;
-    gap: 4px;
-    margin-bottom: 10px;
-    font-size: 12.5px;
-  }
-  .sns-item{ color: var(--ink-soft); }
   .sns-link{
     color: #e6396a;
     font-weight: 700;
@@ -402,11 +394,12 @@ function render(){
           <div class="pf-item"><span class="pf-label">特技</span><b>${p.specialty}</b></div>
           <div class="pf-item"><span class="pf-label">趣味</span><b>${p.hobby}</b></div>
           <div class="pf-item"><span class="pf-label">MBTI</span><b>${p.mbti}</b></div>
+          ${(p.sns && p.sns.length) ? `
+          <div class="pf-item">
+            <span class="pf-label">SNS</span>
+            <b>${p.sns.map(s => `${s.platform} <a class="sns-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.handle}</a>`).join("<br>")}</b>
+          </div>` : ""}
         </div>
-        ${(p.sns && p.sns.length) ? `
-        <div class="sns-row">
-          ${p.sns.map(s => `<div class="sns-item">${s.platform} <a class="sns-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.handle}</a></div>`).join("")}
-        </div>` : ""}
         <div class="comment">${p.comment}</div>
       </div>
     </div>`;
