@@ -311,7 +311,7 @@
     <button class="tab-btn" data-tab="summary">集計結果</button>
   </div>
   <div class="summary-toolbar" id="summaryToolbar" style="display:none;">
-    <button class="sort-btn active" data-sort="total">いいね数順</button>
+    <button class="sort-btn active" data-sort="total">高評価数順</button>
     <button class="sort-btn" data-sort="input">50音順</button>
   </div>
 
@@ -339,7 +339,7 @@
 
 let people = [];               // data.json の中身がここに入る
 let currentTab = "normal";     // "normal" | "shorts" | "summary"
-let summarySortMode = "total"; // "total" = いいね数順 / "input" = 50音順
+let summarySortMode = "total"; // "total" = 高評価数順 / "input" = 50音順
 
 const gridEl = document.getElementById("grid");
 const updatedInfoEl = document.getElementById("updatedInfo");
