@@ -341,8 +341,8 @@
     <button class="tab-btn" data-tab="summary">集計結果</button>
   </div>
   <div class="summary-toolbar" id="summaryToolbar" style="display:none;">
-    <button class="sort-btn active" data-sort="total">多い順</button>
-    <button class="sort-btn" data-sort="input">入力順</button>
+    <button class="sort-btn active" data-sort="total">いいね数順</button>
+    <button class="sort-btn" data-sort="input">50音順</button>
   </div>
 </header>
 
@@ -361,12 +361,50 @@
 // 1) YouTube Data API v3 のAPIキーをここに入れる
 const YOUTUBE_API_KEY = "AIzaSyDXBxSm0FiotQEAoMrPtJ8EIFJuZHflOag";
 
-// 2) 動画情報。id は動画URLの v= の後ろ(ショートの場合は /shorts/ の後ろ)の文字列。
-//    プロフィール項目はそのまま自由に書き換えてください。
-const videoData = {
-  normal: Array.from({length: 27}, (_, i) => ({
-    id: "",                    // YouTubeの動画ID
-    name: `名前${i+1}`,
+// 2) 動画情報。1人につき1つのオブジェクトで、通常動画IDとショート動画IDの両方を持たせています。
+//    プロフィール項目(name〜comment)は通常・ショート共通なので1回書くだけでOKです。
+//    id は動画URLの v= の後ろ(ショートの場合は /shorts/ の後ろ)の文字列。
+const people = [
+  {
+    normalId: "https://www.youtube.com/watch?v=9H15mSxKpx0",               // 1人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/cTdTRiCOrVI",                // 1人目のショート動画ID
+    name: "浅見 愛智",
+    reading: "あざみ まさと",
+    birthday: "2005-05-01",
+    hometown: "埼玉",
+    specialty: "独学",
+    hobby: "歌を歌う、ギター、ダンス",
+    mbti: "ISFP-A",
+    comment: "新しい挑戦でとても不安と緊張がありますが全力で楽しんで頑張ります!!。"
+  },
+  {
+    normalId: "https://www.youtube.com/watch?v=Ad_JQLCgu5U",               // 2人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/fXdStKIAy-8",                // 2人目のショート動画ID
+    name: "新井 有羽",
+    reading: "あらい ゆう",
+    birthday: "2000-05-16",
+    hometown: "京都",
+    specialty: "歌、卓球、スノーボード",
+    hobby: "映画鑑賞、犬の散歩",
+    mbti: "ISFP",
+    comment: "moxymillを一緒に盛り上げていけるよう、今まで培った経験を活かして頑張ります。 応援よろしくお願い致します！"
+  },
+  {
+    normalId: "https://www.youtube.com/watch?v=W-OWkYPu9S8",               // 3人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/tJ2y8xmXAfw",                // 3人目のショート動画ID
+    name: "岩本 真奈",
+    reading: "いわもと まな",
+    birthday: "2002-03-07",
+    hometown: "沖縄",
+    specialty: "掃除、整理整頓、全く人見知りしない、人のいい所をすぐ見つけられる、運動神経いい（体力自信あり！）",
+    hobby: "アーティストのLIVE映像を見ること、アニメを見ること",
+    mbti: "ENFJ",
+    comment: "moxymillさんの魅力の一つである【Charm】という存在に、とても惹かれました！ 唯一無二のグループの魅力をさらに高められる、そんな存在になりたいです！ 皆さん応援よろしくお願いします！"
+  },
+  {
+    normalId: "",               // 4人目の通常動画ID
+    shortsId: "",                // 4人目のショート動画ID
+    name: "名前4",
     reading: "よみがな",
     birthday: "YYYY-MM-DD",
     hometown: "出身地",
@@ -374,10 +412,11 @@ const videoData = {
     hobby: "趣味",
     mbti: "----",
     comment: "コメントをここに入力してください。"
-  })),
-  shorts: Array.from({length: 27}, (_, i) => ({
-    id: "",                    // YouTubeの動画ID(ショート)
-    name: `名前${i+1}`,
+  },
+  {
+    normalId: "",               // 5人目の通常動画ID
+    shortsId: "",                // 5人目のショート動画ID
+    name: "名前5",
     reading: "よみがな",
     birthday: "YYYY-MM-DD",
     hometown: "出身地",
@@ -385,16 +424,280 @@ const videoData = {
     hobby: "趣味",
     mbti: "----",
     comment: "コメントをここに入力してください。"
-  }))
-};
+  },
+  {
+    normalId: "",               // 6人目の通常動画ID
+    shortsId: "",                // 6人目のショート動画ID
+    name: "名前6",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 7人目の通常動画ID
+    shortsId: "",                // 7人目のショート動画ID
+    name: "名前7",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 8人目の通常動画ID
+    shortsId: "",                // 8人目のショート動画ID
+    name: "名前8",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 9人目の通常動画ID
+    shortsId: "",                // 9人目のショート動画ID
+    name: "名前9",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 10人目の通常動画ID
+    shortsId: "",                // 10人目のショート動画ID
+    name: "名前10",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 11人目の通常動画ID
+    shortsId: "",                // 11人目のショート動画ID
+    name: "名前11",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 12人目の通常動画ID
+    shortsId: "",                // 12人目のショート動画ID
+    name: "名前12",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 13人目の通常動画ID
+    shortsId: "",                // 13人目のショート動画ID
+    name: "名前13",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 14人目の通常動画ID
+    shortsId: "",                // 14人目のショート動画ID
+    name: "名前14",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 15人目の通常動画ID
+    shortsId: "",                // 15人目のショート動画ID
+    name: "名前15",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 16人目の通常動画ID
+    shortsId: "",                // 16人目のショート動画ID
+    name: "名前16",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 17人目の通常動画ID
+    shortsId: "",                // 17人目のショート動画ID
+    name: "名前17",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 18人目の通常動画ID
+    shortsId: "",                // 18人目のショート動画ID
+    name: "名前18",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 19人目の通常動画ID
+    shortsId: "",                // 19人目のショート動画ID
+    name: "名前19",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 20人目の通常動画ID
+    shortsId: "",                // 20人目のショート動画ID
+    name: "名前20",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 21人目の通常動画ID
+    shortsId: "",                // 21人目のショート動画ID
+    name: "名前21",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 22人目の通常動画ID
+    shortsId: "",                // 22人目のショート動画ID
+    name: "名前22",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 23人目の通常動画ID
+    shortsId: "",                // 23人目のショート動画ID
+    name: "名前23",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 24人目の通常動画ID
+    shortsId: "",                // 24人目のショート動画ID
+    name: "名前24",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 25人目の通常動画ID
+    shortsId: "",                // 25人目のショート動画ID
+    name: "名前25",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 26人目の通常動画ID
+    shortsId: "",                // 26人目のショート動画ID
+    name: "名前26",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  },
+  {
+    normalId: "",               // 27人目の通常動画ID
+    shortsId: "",                // 27人目のショート動画ID
+    name: "名前27",
+    reading: "よみがな",
+    birthday: "YYYY-MM-DD",
+    hometown: "出身地",
+    specialty: "特技",
+    hobby: "趣味",
+    mbti: "----",
+    comment: "コメントをここに入力してください。"
+  }
+];
 
 /* ============================================================
    ここから下は基本的に触らなくてOKです
    ============================================================ */
 
 const REFRESH_INTERVAL_MS = 60 * 60 * 1000; // 1時間ごと
-let currentTab = "normal";
-let summarySortMode = "total"; // "total" = 多い順 / "input" = 入力順
+let currentTab = "normal"; // "normal" | "shorts" | "summary"
+let summarySortMode = "total"; // "total" = いいね数順 / "input" = 50音順
 
 const gridEl = document.getElementById("grid");
 const updatedInfoEl = document.getElementById("updatedInfo");
@@ -413,36 +716,40 @@ function render(){
     renderSummary();
     return;
   }
-  const list = videoData[currentTab];
   const isShorts = currentTab === "shorts";
-  gridEl.innerHTML = list.map((v, idx) => {
-    const thumbUrl = v.id ? `https://img.youtube.com/vi/${v.id}/hqdefault.jpg` : "";
+  const idKey = isShorts ? "shortsId" : "normalId";
+  const viewsKey = isShorts ? "shortsViews" : "normalViews";
+  const likesKey = isShorts ? "shortsLikes" : "normalLikes";
+
+  gridEl.innerHTML = people.map((p, idx) => {
+    const vid = p[idKey];
+    const thumbUrl = vid ? `https://img.youtube.com/vi/${vid}/hqdefault.jpg` : "";
     return `
     <div class="card">
       <div class="video-wrap ${isShorts ? 'ratio-9-16' : 'ratio-16-9'}"
-           data-tab="${currentTab}" data-idx="${idx}" data-id="${v.id}">
-        ${v.id
-          ? `<img src="${thumbUrl}" alt="${v.name}"><div class="play-badge"></div>`
+           data-idkey="${idKey}" data-idx="${idx}" data-id="${vid}">
+        ${vid
+          ? `<img src="${thumbUrl}" alt="${p.name}"><div class="play-badge"></div>`
           : `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#888;font-size:12px;">動画IDが未設定です</div>`
         }
       </div>
       <div class="stats-row">
-        <div class="stat-pill views">👁 <span class="n" data-stat="views-${currentTab}-${idx}">${fmt(v.viewCount)}</span></div>
-        <div class="stat-pill likes">❤ <span class="n" data-stat="likes-${currentTab}-${idx}">${fmt(v.likeCount)}</span></div>
+        <div class="stat-pill views">👁 <span class="n" data-stat="views-${idx}">${fmt(p[viewsKey])}</span></div>
+        <div class="stat-pill likes">❤ <span class="n" data-stat="likes-${idx}">${fmt(p[likesKey])}</span></div>
       </div>
       <div class="profile">
         <div class="profile-name">
-          <span class="name">${v.name}</span>
-          <span class="reading">${v.reading}</span>
+          <span class="name">${p.name}</span>
+          <span class="reading">${p.reading}</span>
         </div>
         <div class="profile-grid">
-          <div class="pf-item"><span class="pf-label">生年月日</span><b>${v.birthday}</b></div>
-          <div class="pf-item"><span class="pf-label">出身地</span><b>${v.hometown}</b></div>
-          <div class="pf-item"><span class="pf-label">特技</span><b>${v.specialty}</b></div>
-          <div class="pf-item"><span class="pf-label">趣味</span><b>${v.hobby}</b></div>
-          <div class="pf-item"><span class="pf-label">MBTI</span><b>${v.mbti}</b></div>
+          <div class="pf-item"><span class="pf-label">生年月日</span><b>${p.birthday}</b></div>
+          <div class="pf-item"><span class="pf-label">出身地</span><b>${p.hometown}</b></div>
+          <div class="pf-item"><span class="pf-label">特技</span><b>${p.specialty}</b></div>
+          <div class="pf-item"><span class="pf-label">趣味</span><b>${p.hobby}</b></div>
+          <div class="pf-item"><span class="pf-label">MBTI</span><b>${p.mbti}</b></div>
         </div>
-        <div class="comment">${v.comment}</div>
+        <div class="comment">${p.comment}</div>
       </div>
     </div>`;
   }).join("");
@@ -454,25 +761,21 @@ function render(){
 }
 
 function renderSummary(){
-  // normal[i] と shorts[i] を同一人物として合算(同じ並び順である前提)
-  const count = Math.max(videoData.normal.length, videoData.shorts.length);
-  const rows = [];
-  for(let i=0; i<count; i++){
-    const n = videoData.normal[i];
-    const s = videoData.shorts[i];
-    const normalLikes = Number(n?.likeCount) || 0;
-    const shortsLikes = Number(s?.likeCount) || 0;
-    rows.push({
-      name: n?.name || s?.name || `名前${i+1}`,
+  const rows = people.map(p => {
+    const normalLikes = Number(p.normalLikes) || 0;
+    const shortsLikes = Number(p.shortsLikes) || 0;
+    return {
+      name: p.name,
       normalLikes,
       shortsLikes,
       total: normalLikes + shortsLikes
-    });
-  }
+    };
+  });
+
   if(summarySortMode === "total"){
     rows.sort((a, b) => b.total - a.total);
   }
-  // "input" の場合はvideoDataの並び順のまま(何もしない)
+  // "input" の場合はpeopleの並び順のまま(何もしない)
 
   gridEl.innerHTML = rows.map((r, i) => {
     const rankClass = summarySortMode === "total"
@@ -530,12 +833,11 @@ async function fetchStats(){
   refreshBtn.classList.add("loading");
   statusMsgEl.textContent = "取得中...";
 
-  // normal / shorts をまとめて、参照を保持しつつID配列を作る
+  // normalId / shortsId をまとめて、参照を保持しつつID配列を作る
   const all = [];
-  ["normal","shorts"].forEach(tab=>{
-    videoData[tab].forEach((v, idx)=>{
-      if(v.id) all.push({tab, idx, id: v.id});
-    });
+  people.forEach((p, idx) => {
+    if(p.normalId) all.push({ idx, key: "normalId", statViews: "normalViews", statLikes: "normalLikes", id: p.normalId });
+    if(p.shortsId) all.push({ idx, key: "shortsId", statViews: "shortsViews", statLikes: "shortsLikes", id: p.shortsId });
   });
 
   if(all.length === 0){
@@ -564,8 +866,8 @@ async function fetchStats(){
       chunk.forEach(c=>{
         const s = statMap[c.id];
         if(s){
-          videoData[c.tab][c.idx].viewCount = s.viewCount;
-          videoData[c.tab][c.idx].likeCount = s.likeCount;
+          people[c.idx][c.statViews] = s.viewCount;
+          people[c.idx][c.statLikes] = s.likeCount;
         }
       });
     }
@@ -574,11 +876,14 @@ async function fetchStats(){
     if(currentTab === "summary"){
       renderSummary();
     }else{
-      videoData[currentTab].forEach((v, idx)=>{
-        const viewsEl = document.querySelector(`[data-stat="views-${currentTab}-${idx}"]`);
-        const likesEl = document.querySelector(`[data-stat="likes-${currentTab}-${idx}"]`);
-        if(viewsEl) viewsEl.textContent = fmt(v.viewCount);
-        if(likesEl) likesEl.textContent = fmt(v.likeCount);
+      const isShorts = currentTab === "shorts";
+      const viewsKey = isShorts ? "shortsViews" : "normalViews";
+      const likesKey = isShorts ? "shortsLikes" : "normalLikes";
+      people.forEach((p, idx)=>{
+        const viewsEl = document.querySelector(`[data-stat="views-${idx}"]`);
+        const likesEl = document.querySelector(`[data-stat="likes-${idx}"]`);
+        if(viewsEl) viewsEl.textContent = fmt(p[viewsKey]);
+        if(likesEl) likesEl.textContent = fmt(p[likesKey]);
       });
     }
 
