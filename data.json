@@ -1,39 +1,39 @@
 [
   {
-    "normalId": "",
-    "shortsId": "",
-    "name": "名前1",
-    "reading": "よみがな",
-    "birthday": "YYYY-MM-DD",
-    "hometown": "出身地",
-    "specialty": "特技",
-    "hobby": "趣味",
-    "mbti": "----",
-    "comment": "コメントをここに入力してください。"
+    normalId: "https://www.youtube.com/watch?v=9H15mSxKpx0",               // 1人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/cTdTRiCOrVI",                // 1人目のショート動画ID
+    name: "浅見 愛智",
+    reading: "あざみ まさと",
+    birthday: "2005-05-01",
+    hometown: "埼玉",
+    specialty: "独学",
+    hobby: "歌を歌う、ギター、ダンス",
+    mbti: "ISFP-A",
+    comment: "新しい挑戦でとても不安と緊張がありますが全力で楽しんで頑張ります!!。"
   },
   {
-    "normalId": "",
-    "shortsId": "",
-    "name": "名前2",
-    "reading": "よみがな",
-    "birthday": "YYYY-MM-DD",
-    "hometown": "出身地",
-    "specialty": "特技",
-    "hobby": "趣味",
-    "mbti": "----",
-    "comment": "コメントをここに入力してください。"
+    normalId: "https://www.youtube.com/watch?v=Ad_JQLCgu5U",               // 2人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/fXdStKIAy-8",                // 2人目のショート動画ID
+    name: "新井 有羽",
+    reading: "あらい ゆう",
+    birthday: "2000-05-16",
+    hometown: "京都",
+    specialty: "歌、卓球、スノーボード",
+    hobby: "映画鑑賞、犬の散歩",
+    mbti: "ISFP",
+    comment: "moxymillを一緒に盛り上げていけるよう、今まで培った経験を活かして頑張ります。 応援よろしくお願い致します！"
   },
   {
-    "normalId": "",
-    "shortsId": "",
-    "name": "名前3",
-    "reading": "よみがな",
-    "birthday": "YYYY-MM-DD",
-    "hometown": "出身地",
-    "specialty": "特技",
-    "hobby": "趣味",
-    "mbti": "----",
-    "comment": "コメントをここに入力してください。"
+    normalId: "https://www.youtube.com/watch?v=W-OWkYPu9S8",               // 3人目の通常動画ID
+    shortsId: "https://www.youtube.com/shorts/tJ2y8xmXAfw",                // 3人目のショート動画ID
+    name: "岩本 真奈",
+    reading: "いわもと まな",
+    birthday: "2002-03-07",
+    hometown: "沖縄",
+    specialty: "掃除、整理整頓、全く人見知りしない、人のいい所をすぐ見つけられる、運動神経いい（体力自信あり！）",
+    hobby: "アーティストのLIVE映像を見ること、アニメを見ること",
+    mbti: "ENFJ",
+    comment: "moxymillさんの魅力の一つである【Charm】という存在に、とても惹かれました！ 唯一無二のグループの魅力をさらに高められる、そんな存在になりたいです！ 皆さん応援よろしくお願いします！"
   },
   {
     "normalId": "",
