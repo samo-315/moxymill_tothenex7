@@ -403,7 +403,6 @@ function render(){
           <div class="pf-item"><span class="pf-label">趣味</span><b>${p.hobby}</b></div>
           <div class="pf-item"><span class="pf-label">MBTI</span><b>${p.mbti}</b></div>
         </div>
-        </div>
         ${(p.sns && p.sns.length) ? `
         <div class="sns-row">
           ${p.sns.map(s => `<div class="sns-item">${s.platform} <a class="sns-link" href="${s.url}" target="_blank" rel="noopener noreferrer">${s.handle}</a></div>`).join("")}
