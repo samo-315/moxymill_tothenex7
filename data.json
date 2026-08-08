@@ -1,7 +1,7 @@
 [
   {
-    "normalId": "https://www.youtube.com/watch?v=9H15mSxKpx0",               // 1人目の通常動画ID
-    "shortsId": "https://www.youtube.com/shorts/cTdTRiCOrVI",                // 1人目のショート動画ID
+    "normalId": "https://www.youtube.com/watch?v=9H15mSxKpx0",
+    "shortsId": "https://www.youtube.com/shorts/cTdTRiCOrVI",
     "name": "浅見 愛智",
     "reading": "あざみ まさと",
     "birthday": "2005-05-01",
@@ -12,8 +12,8 @@
     "comment": "新しい挑戦でとても不安と緊張がありますが全力で楽しんで頑張ります!!。"
   },
   {
-    "normalId": "https://www.youtube.com/watch?v=Ad_JQLCgu5U",               // 2人目の通常動画ID
-    "shortsId": "https://www.youtube.com/shorts/fXdStKIAy-8",                // 2人目のショート動画ID
+    "normalId": "https://www.youtube.com/watch?v=Ad_JQLCgu5U",
+    "shortsId": "https://www.youtube.com/shorts/fXdStKIAy-8",
     "name": "新井 有羽",
     "reading": "あらい ゆう",
     "birthday": "2000-05-16",
@@ -24,8 +24,8 @@
     "comment": "moxymillを一緒に盛り上げていけるよう、今まで培った経験を活かして頑張ります。 応援よろしくお願い致します！"
   },
   {
-    "normalId": "https://www.youtube.com/watch?v=W-OWkYPu9S8",               // 3人目の通常動画ID
-    "shortsId": "https://www.youtube.com/shorts/tJ2y8xmXAfw",                // 3人目のショート動画ID
+    "normalId": "https://www.youtube.com/watch?v=W-OWkYPu9S8",
+    "shortsId": "https://www.youtube.com/shorts/tJ2y8xmXAfw",
     "name": "岩本 真奈",
     "reading": "いわもと まな",
     "birthday": "2002-03-07",
