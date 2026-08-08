@@ -456,6 +456,7 @@ function switchTab(tab){
   });
   summaryToolbarEl.style.display = tab === "summary" ? "flex" : "none";
   render();
+  window.scrollTo(0, 0); // タブ切り替え時は毎回一番上に戻す
 }
 
 document.querySelectorAll(".tab-btn").forEach(b => {
