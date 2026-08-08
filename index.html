@@ -468,6 +468,7 @@ document.querySelectorAll(".sort-btn").forEach(b => {
     summarySortMode = b.dataset.sort;
     document.querySelectorAll(".sort-btn").forEach(x => x.classList.toggle("active", x === b));
     renderSummary();
+    window.scrollTo(0, 0); // タブ切り替え時は毎回一番上に戻す
   });
 });
 
