@@ -383,8 +383,8 @@ function render(){
         }
       </div>
       <div class="stats-row">
-        <div class="stat-pill views">👁 <span class="n" data-stat="views-${idx}">${fmt(p[viewsKey])}</span></div>
-        <div class="stat-pill likes">❤ <span class="n" data-stat="likes-${idx}">${fmt(p[likesKey])}</span></div>
+        <div class="stat-pill views">👀 <span class="n" data-stat="views-${idx}">${fmt(p[viewsKey])}</span></div>
+        <div class="stat-pill likes">👍🏻 <span class="n" data-stat="likes-${idx}">${fmt(p[likesKey])}</span></div>
       </div>
       <div class="profile">
         <div class="profile-name">
@@ -435,7 +435,7 @@ function renderSummary(){
         <div class="summary-name">${r.name}</div>
         <div class="summary-breakdown">通常 ${fmt(r.normalLikes)} ・ ショート ${fmt(r.shortsLikes)}</div>
       </div>
-      <div class="summary-total">❤ ${fmt(r.total)}</div>
+      <div class="summary-total">👍🏻 ${fmt(r.total)}</div>
     </div>`;
   }).join("");
 }
