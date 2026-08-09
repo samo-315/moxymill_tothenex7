@@ -295,6 +295,34 @@
     line-height: 1.6;
     color: #8a5a00;
   }
+  
+  /* PC(横幅の広い画面)向けレイアウト */
+  @media (min-width: 700px){
+    header{
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    main{
+      max-width: 900px;
+      margin: 0 auto;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+    .grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    /* 集計結果タブは横幅いっぱいの1列リストのまま */
+    .summary-card{
+      grid-column: 1 / -1;
+    }
+    .video-wrap.ratio-9-16{
+      max-height: 520px;
+    }
+  }
 </style>
 </head>
 <body>
