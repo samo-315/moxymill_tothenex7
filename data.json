@@ -171,7 +171,7 @@
     "sns": [
       { "platform": "Instagram", "handle": "@har_8.7", "url": "https://instagram.com/har_8.7" },
       { "platform": "TikTok", "handle": "@sugisugi_har", "url": "https://www.tiktok.com/@sugisugi_har" },
-      { "platform": "(旧Twitter)", "handle": "@ch_han087", "url": "https://www.x.com/ch_han087" }
+      { "platform": "X(旧Twitter)", "handle": "@ch_han087", "url": "https://www.x.com/ch_han087" }
     ],
     "comment": "人生かけよう、今しかない、この思いで応募しました。自分が辛い時に救われた分、誰かの明日を照らせる存在になりたい。moxymillとして大きなステージを目指したい。自分らしく、全力で頑張ります⟡"
   },
@@ -185,6 +185,9 @@
     "specialty": "料理、人とすぐに打ち解けること",
     "hobby": "美容、愛犬と過ごすこと、ライブ鑑賞",
     "mbti": "ISTP",
+    "sns": [
+      { "platform": "X(旧Twitter)", "handle": "@_xxmmaoxx_", "url": "https://www.x.com/_xxmmaoxx_" }
+    ],
     "comment": "明るさと、負けず嫌いでコツコツ努力できるところが私の強みです。自分らしさを全力で届け、「もっと見たい」「応援したい」と思ってもらえる存在を目指します！"
   },
   {
@@ -231,7 +234,7 @@
     "sns": [
       { "platform": "Instagram", "handle": "@yuyu_dance", "url": "https://instagram.com/yuyu_dance" },
       { "platform": "TikTok", "handle": "@yuyu_dance", "url": "https://www.tiktok.com/@yuyu_dance" },
-      { "platform": "(旧Twitter)", "handle": "@yuyu__dance", "url": "https://www.x.com/yuyu__dance" }
+      { "platform": "X(旧Twitter)", "handle": "@yuyu__dance", "url": "https://www.x.com/yuyu__dance" }
     ],
     "comment": "私らしく笑顔で感謝を忘れず 全力で最後まで頑張ります！！！ 是非あたたかく見守って下さい‎𖤐 ̖́-‬ 宜しくお願い致します！！"
   },
@@ -248,7 +251,7 @@
     "sns": [
       { "platform": "Instagram", "handle": "@nanacon.26", "url": "https://instagram.com/nanacon.26" },
       { "platform": "TikTok", "handle": "@nanacon.26", "url": "https://www.tiktok.com/@nanacon.26" },
-      { "platform": "(旧Twitter)", "handle": "@nanacon__26", "url": "https://www.x.com/nanacon__26" }
+      { "platform": "X(旧Twitter)", "handle": "@nanacon__26", "url": "https://www.x.com/nanacon__26" }
     ],
     "comment": "私はmoxymillさんが大好きです。候補生の誰よりも愛を語れる自信があります。そして私は全国高校ソロダンスバトルで日本1をとったことがあります！ロックダンスなら私にお任せ下さい。"
   },
