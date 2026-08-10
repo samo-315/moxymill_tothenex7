@@ -57,6 +57,9 @@
     "specialty": "歌唱、ギター、バスケットボール",
     "hobby": "音楽を聴く、作詞",
     "mbti": "ISTP",
+    "sns": [
+      { "platform": "TikTok", "handle": "@kiiiiiiiiii0915", "url": "https://www.tiktok.com/@kiiiiiiiiii0915" }
+    ],
     "comment": "緊張してますが、moxymillの皆さんが大切にされてきた楽曲へのリスペクトを忘れず、自分の表現としてしっかりとお届けできるよう挑戦したいです。"
   },
   {
@@ -85,7 +88,8 @@
     "hobby": "カフェ巡り、SNS投稿",
     "mbti": "ESFJ",
     "sns": [
-      { "platform": "Instagram", "handle": "@erina_il29", "url": "https://instagram.com/erina_il29" }
+      { "platform": "Instagram", "handle": "@erina_il29", "url": "https://instagram.com/erina_il29" },
+      { "platform": "TikTok", "handle": "@erina_07.29", "url": "https://www.tiktok.com/@erina_07.29" }
     ],
     "comment": "どんな環境でも1つ1つの経験を大切にしながら挑戦し続けています。 仲間と共に応援してくださる方に感動や笑顔を届けられるアーティストを目指します。"
   },
@@ -100,7 +104,8 @@
     "hobby": "ネイル、音楽鑑賞、散歩、ドライブ",
     "mbti": "ISFP",
     "sns": [
-      { "platform": "Instagram", "handle": "@mm_ino7", "url": "https://instagram.com/mm_ino7" }
+      { "platform": "Instagram", "handle": "@mm_ino7", "url": "https://instagram.com/mm_ino7" },
+      { "platform": "TikTok", "handle": "@mm_ino7", "url": "https://www.tiktok.com/@mm_ino7" }
     ],
     "comment": "歌うこと、踊ることが大好きです！何度も挑戦を続けてきたからこそ、このチャンスを大切にしたいです。私らしいパフォーマンスを全力で届けます！"
   },
@@ -131,7 +136,8 @@
     "hobby": "ミシン",
     "mbti": "INFP",
     "sns": [
-      { "platform": "Instagram", "handle": "@uniiq.7", "url": "https://instagram.com/uniiq.7" }
+      { "platform": "Instagram", "handle": "@uniiq.7", "url": "https://instagram.com/uniiq.7" },
+      { "platform": "TikTok", "handle": "@uniiq.7", "url": "https://www.tiktok.com/@uniiq.7" }
     ],
     "comment": "このオーディションを知って、諦めた夢にもう一度挑戦したいと思えました。歌もダンスもまだ未熟ですが、人を笑顔にし、応援してくださる方へ恩返しができるアーティストになりたいです。応援よろしくお願いします。"
   },
@@ -162,6 +168,7 @@
     "mbti": "ENFJ",
     "sns": [
       { "platform": "Instagram", "handle": "@har_8.7", "url": "https://instagram.com/har_8.7" },
+      { "platform": "TikTok", "handle": "@sugisugi_har", "url": "https://www.tiktok.com/@sugisugi_har" },
       { "platform": "(旧Twitter)", "handle": "@ch_han087", "url": "https://www.x.com/ch_han087" }
     ],
     "comment": "人生かけよう、今しかない、この思いで応募しました。自分が辛い時に救われた分、誰かの明日を照らせる存在になりたい。moxymillとして大きなステージを目指したい。自分らしく、全力で頑張ります⟡"
@@ -188,6 +195,9 @@
     "specialty": "歌、服作り、人の小さな変化にすぐ気づくこと、ずっと喋れること、いつでもどこでも寝れること、友達の誕生日を覚えること、予定を立てると大体雨を降らせられること。",
     "hobby": "歌、ギター、漫画を読むこと、ネイルデザインやメイク道具、カラコンを探すこと、寝ること、食べること、観葉植物を育てること。",
     "mbti": "ENFP",
+    "sns": [
+      { "platform": "TikTok", "handle": "@wlrb_haru", "url": "https://www.tiktok.com/@wlrb_haru" }
+    ],
     "comment": "ひとつひとつの出会いと経験を大切にし、「私らしい」を表現した音楽を皆さんに届けたいです！！"
   },
   {
@@ -200,6 +210,10 @@
     "specialty": "歌、ダンス",
     "hobby": "美味しいものを食べること、映画ドラマみること、寝ること",
     "mbti": "ISFP-T",
+    "sns": [
+      { "platform": "Instagram", "handle": "@hiyoriii__05", "url": "https://instagram.com/hiyoriii__05" },
+      { "platform": "TikTok", "handle": "@hiyo__050", "url": "https://www.tiktok.com/@hiyo__050" }
+    ],
     "comment": "これまでメンバーの皆さんが積み重ねてこられた時間や思いを大切にして、リスペクトの気持ちを持って頑張りたいです。自分が新しい色になれるように、精一杯頑張ります。よろしくお願いいたします。"
   },
   {
@@ -214,6 +228,7 @@
     "mbti": "ENTJ",
     "sns": [
       { "platform": "Instagram", "handle": "@yuyu_dance", "url": "https://instagram.com/yuyu_dance" },
+      { "platform": "TikTok", "handle": "@yuyu_dance", "url": "https://www.tiktok.com/@yuyu_dance" },
       { "platform": "(旧Twitter)", "handle": "@yuyu__dance", "url": "https://www.x.com/yuyu__dance" }
     ],
     "comment": "私らしく笑顔で感謝を忘れず 全力で最後まで頑張ります！！！ 是非あたたかく見守って下さい‎𖤐 ̖́-‬ 宜しくお願い致します！！"
@@ -246,6 +261,7 @@
     "mbti": "INFJ",
     "sns": [
       { "platform": "Instagram", "handle": "@yuika_046", "url": "https://instagram.com/yuika_046" },
+      { "platform": "TikTok", "handle": "@yuika_046", "url": "https://www.tiktok.com/@yuika_046" },
       { "platform": "X(旧Twitter)", "handle": "@yuika_046", "url": "https://www.x.com/yuika_046" }
     ],
     "comment": "一瞬一瞬を大切に、見てくださる方の心を動かせるよう精一杯頑張ります。よろしくお願いします。"
@@ -318,15 +334,12 @@
     "reading": "みやうち のわ",
     "birthday": "2008-09-16",
     "hometown": "東京",
-    "sns": [
-      { "platform": "Instagram", "handle": "@yuki_mode", "url": "https://instagram.com/yuki_mode" },
-      { "platform": "TikTok", "handle": "@yuki_mode", "url": "https://www.tiktok.com/@yuki_mode" }
-    ],
     "specialty": "目のイラストを描く、肩甲骨同士をくっつける、アイスの早食い、感情系の表現",
     "hobby": "映画鑑賞、夜中に音楽を聴きながら浸る、空の写真を撮る",
     "mbti": "INFJ",
     "sns": [
-      { "platform": "Instagram", "handle": "@n00__i", "url": "https://instagram.com/n00__i" }
+      { "platform": "Instagram", "handle": "@n00__i", "url": "https://instagram.com/n00__i" },
+      { "platform": "TikTok", "handle": "@n00__i", "url": "https://www.tiktok.com/@n00__i" }
     ],
     "comment": "私はあなたの希望の羽のような存在になりたいです。幼いころから目指してきた夢でやっとスタートラインに立てました。ありのままの姿で表現して、向き合って、継いで、新しい未来へ共に駆け抜けたいです！"
   },
@@ -372,7 +385,8 @@
     "hobby": "小説を書くこと、猫を愛でること",
     "mbti": "INFJ-T",
     "sns": [
-      { "platform": "Instagram", "handle": "@yuua_yagi", "url": "https://instagram.com/yuua_yagi" }
+      { "platform": "Instagram", "handle": "@yuua_yagi", "url": "https://instagram.com/yuua_yagi" },
+      { "platform": "TikTok", "handle": "@yuua_yagi", "url": "https://www.tiktok.com/@yuua_yagi" }
     ],
     "comment": "Beautyとは、Sexyとは。 ひとによって答えは様々だと思います。 オーディションを通して自分の魅力をお見せするだけでなく、それぞれのCharmの意味についても深く考えていきたいです。"
   },
