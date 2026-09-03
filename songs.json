@@ -1,0 +1,8 @@
+[
+  { "id": 1, "title": "Living Free", "genre": "POP", "jacket": "images/song01.jpg" },
+  { "id": 2, "title": "Knight Rising", "genre": "COOL", "jacket": "images/song02.jpg" },
+  { "id": 3, "title": "めろめろねって メロメロね", "genre": "SWEET", "jacket": "images/song03.jpg" },
+  { "id": 4, "title": "Higher", "genre": "CRUSH", "jacket": "images/song04.jpg" },
+  { "id": 5, "title": "Suger×Bitter", "genre": "CUTE", "jacket": "images/song05.jpg" },
+  { "id": 6, "title": "My Season", "genre": "SEXY", "jacket": "images/song06.jpg" }
+]
