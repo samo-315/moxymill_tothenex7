@@ -466,7 +466,7 @@
     color: #8a5a00;
   }
 
-  /* 最終ランキング */
+  /* 個人動画ランキング */
 .rank-row{
   display:flex;
   align-items:center;
@@ -891,7 +891,7 @@ function renderSummary(){
 }
 
 /* ============================================================
-   最終ランキング
+   個人動画ランキング
    ============================================================ */
 
 function renderRanking(){
@@ -902,7 +902,7 @@ function renderRanking(){
     .sort((a, b) => Number(a.rank) - Number(b.rank));
 
   if(rows.length === 0){
-    gridEl.innerHTML = `<div class="modal-empty">まだ最終ランキングが設定されていません。</div>`;
+    gridEl.innerHTML = `<div class="modal-empty">まだ個人動画ランキングが設定されていません。</div>`;
     return;
   }
 
@@ -970,7 +970,7 @@ function unlockBodyScroll(){
 }
 
 /* ============================================================
-   最終ランキング: 課題曲ポップアップ(ボタンの真上に表示)
+   個人動画ランキング: 課題曲ポップアップ(ボタンの真上に表示)
    ============================================================ */
 
 const songPopoverEl = document.getElementById("songPopover");
@@ -1252,7 +1252,7 @@ const phaseTabs = {
     { key: "ranking", label: "ランキング" },
   ],
   solo: [
-    { key: "ranking-solo", label: "ランキング" },
+    { key: "ranking-solo", label: "個人動画<br>ランキング" },
     { key: "songs", label: "課題曲" },
   ],
   group: [],
