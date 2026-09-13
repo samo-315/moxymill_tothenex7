@@ -792,7 +792,7 @@ function render(){
     renderSummary();
     return;
   }
-  if(currentTab === "ranking" || currentTab === "ranking-solo"){
+  if(currentTab === "ranking" || currentTab === "ranking-solo" || currentTab === "ranking-interim"){
     renderRanking();
     return;
   }
@@ -894,10 +894,19 @@ function renderSummary(){
    個人動画ランキング
    ============================================================ */
 
+const rankingConfig = {
+  "ranking": { field: "kojinRank", showSongBtn: false },
+  "ranking-solo": { field: "kojinRank", showSongBtn: true },
+  "ranking-interim": { field: "solovoRank", showSongBtn: true },
+};
+
 function renderRanking(){
-  const showSongBtn = currentTab === "ranking-solo"; // ソロ審査側だけ課題曲ボタンを出す
+  const config = rankingConfig[currentTab] || rankingConfig["ranking"];
+  const rankField = config.field;
+  const showSongBtn = config.showSongBtn;
+
   const rows = people
-    .map((p, idx) => ({ p, idx, rank: p.finalRank }))
+    .map((p, idx) => ({ p, idx, rank: p[rankField] }))
     .filter(r => r.rank !== undefined && r.rank !== null && r.rank !== "")
     .sort((a, b) => Number(a.rank) - Number(b.rank));
 
@@ -1253,6 +1262,7 @@ const phaseTabs = {
   ],
   solo: [
     { key: "ranking-solo", label: "個人動画<br>ランキング" },
+    { key: "ranking-interim", label: "中間順位" },
     { key: "songs", label: "課題曲" },
   ],
   group: [],
