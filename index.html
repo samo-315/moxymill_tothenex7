@@ -1031,10 +1031,10 @@ function renderRanking(){
 }
 
 /* ============================================================
-   個人審査ランキング(ボーカル・ダンス・総合順位)
+   ソロ審査ランキング(ボーカル・ダンス・総合順位)
    ============================================================ */
 
-let soloRankField = "solotoRank"; // 個人審査ランキングで、現在表示中の項目(ボーカル/ダンス/総合)
+let soloRankField = "solotoRank"; // ソロ審査ランキングで、現在表示中の項目(ボーカル/ダンス/総合)
 
 function renderSoloOverallRanking(){
   const rows = people
@@ -1043,7 +1043,7 @@ function renderSoloOverallRanking(){
     .sort((a, b) => Number(a.rank) - Number(b.rank));
 
   if(rows.length === 0){
-    gridEl.innerHTML = `<div class="modal-empty">まだ個人審査ランキングが設定されていません。</div>`;
+    gridEl.innerHTML = `<div class="modal-empty">まだソロ審査ランキングが設定されていません。</div>`;
     return;
   }
 
@@ -1532,7 +1532,7 @@ const phaseTabs = {
     { key: "ranking-solo", label: "個人動画<br>ランキング" },
     { key: "songs", label: "課題曲" },
     { key: "performance", label: "パフォーマンス" },
-    { key: "ranking-interim", label: "個人審査<br>ランキング" },
+    { key: "ranking-interim", label: "ソロ審査<br>ランキング" },
   ],
   group: [
     { key: "group-songs", label: "課題曲" },
