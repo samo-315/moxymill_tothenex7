@@ -37,7 +37,9 @@
     "kojinRank":19,
     "solovoRank":13,
     "solodaRank":14,
-    "solotoRank":12
+    "solotoRank":12,
+    "performance":"NPpfayW7epg",
+    "group":"B2"
   },
   {
     "normalId": "W-OWkYPu9S8",
@@ -59,7 +61,9 @@
     "kojinRank":2,
     "solovoRank":5,
     "solodaRank":2,
-    "solotoRank":2
+    "solotoRank":2,
+    "performance":"NPpfayW7epg",
+    "group":"G1"
   },
   {
     "normalId": "1NwpNh9yHXA",
@@ -80,7 +84,9 @@
     "kojinRank":11,
     "solovoRank":5,
     "solodaRank":11,
-    "solotoRank":6
+    "solotoRank":6,
+    "performance":"oqovV5JV0ac",
+    "group":"C1"
   },
   {
     "normalId": "slE8GhOw3IU",
@@ -103,7 +109,9 @@
     "kojinRank":14,
     "solovoRank":15,
     "solodaRank":14,
-    "solotoRank":15
+    "solotoRank":15,
+    "performance":"Iy2-FfBq5jk",
+    "group":"F2"
   },
   {
     "normalId": "qahlw4vnDnA",
@@ -125,7 +133,9 @@
     "kojinRank":6,
     "solovoRank":8,
     "solodaRank":16,
-    "solotoRank":8
+    "solotoRank":8,
+    "performance":"ztP07jE7hTs",
+    "group":"E1"
   },
   {
     "normalId": "LMPscwYUYYg",
@@ -148,7 +158,9 @@
     "kojinRank":16,
     "solovoRank":3,
     "solodaRank":19,
-    "solotoRank":9
+    "solotoRank":9,
+    "performance":"cHvXcc4X5sk",
+    "group":"A2"
   },
   {
     "normalId": "BDMJ6Q48E8E",
@@ -171,7 +183,9 @@
     "kojinRank":20,
     "solovoRank":18,
     "solodaRank":10,
-    "solotoRank":14
+    "solotoRank":14,
+    "performance":"5fDTJoXlBbI",
+    "group":"D2"
   },
   {
     "normalId": "hbtPtLLF9oc",
@@ -193,7 +207,9 @@
     "kojinRank":5,
     "solovoRank":10,
     "solodaRank":8,
-    "solotoRank":6
+    "solotoRank":6,
+    "performance":"YiiamyPnkA0",
+    "group":"F1"
   },
   {
     "normalId": "lj_ANrRYk0c",
@@ -215,7 +231,9 @@
     "kojinRank":21,
     "solovoRank":5,
     "solodaRank":1,
-    "solotoRank":1
+    "solotoRank":1,
+    "performance":"YPlisqNoNg4",
+    "group":"E2"
   },
   {
     "normalId": "7LoVvy5l2Ec",
@@ -238,7 +256,9 @@
     "kojinRank":3,
     "solovoRank":1,
     "solodaRank":5,
-    "solotoRank":3
+    "solotoRank":3,
+    "performance":"wNYY-lLxHDM",
+    "group":"C2"
   },
   {
     "normalId": "td4h8VGm6fg",
@@ -258,7 +278,9 @@
     "vocalSongs": [1, 3],
     "kojinRank":26,
     "solovoRank":24,
-    "solodaRank":25
+    "solodaRank":25,
+    "performance":"K6oq_wGukxQ",
+    "withdrawalNote": "2次審査で脱落"
   },
   {
     "normalId": "ydNNY7zB_YM",
@@ -278,7 +300,9 @@
     "vocalSongs": [2, 4],
     "kojinRank":27,
     "solovoRank":17,
-    "solodaRank":20
+    "solodaRank":20,
+    "performance":"WxaRnCSKhr0",
+    "withdrawalNote": "2次審査で脱落"
   },
   {
     "normalId": "FgPZZXVdrZ8",
@@ -299,7 +323,9 @@
     "vocalSongs": [5, 6],
     "kojinRank":12,
     "solovoRank":21,
-    "solodaRank":21
+    "solodaRank":21,
+    "performance":"ErWup770hWw",
+    "withdrawalNote": "2次審査で脱落"
   },
   {
     "normalId": "pN4_sexQ91g",
@@ -322,7 +348,9 @@
     "kojinRank":15,
     "solovoRank":16,
     "solodaRank":13,
-    "solotoRank":15
+    "solotoRank":15,
+    "performance":"fRIJlNdTmSo",
+    "group":"G2"
   },
   {
     "normalId": "UuSP7aHk1jI",
@@ -345,7 +373,9 @@
     "kojinRank":8,
     "solovoRank":10,
     "solodaRank":16,
-    "solotoRank":11
+    "solotoRank":11,
+    "performance":"QxIPx5FVp9I",
+    "group":"B1"
   },
   {
     "normalId": "9k2egyfe_fE",
@@ -367,7 +397,9 @@
     "vocalSongs": [3, 5],
     "kojinRank":17,
     "solovoRank":14,
-    "solodaRank":23
+    "solodaRank":23,
+    "performance":"2-NJVofjBZI",
+    "withdrawalNote": "2次審査で脱落"
   },
   {
     "normalId": "kWB0rf-vDks",
@@ -388,7 +420,9 @@
     "kojinRank":1,
     "solovoRank":19,
     "solodaRank":5,
-    "solotoRank":13
+    "solotoRank":13,
+    "performance":"FVx1Y50-etI",
+    "group":"J1"
   },
   {
     "normalId": "35SdNNrM18g",
@@ -410,7 +444,9 @@
     "kojinRank":10,
     "solovoRank":23,
     "solodaRank":4,
-    "solotoRank":18
+    "solotoRank":18,
+    "performance":"F65PvQGeEog",
+    "group":"H2"
   },
   {
     "normalId": "j4KL6qOpFyE",
@@ -431,7 +467,9 @@
     "kojinRank":9,
     "solovoRank":12,
     "solodaRank":3,
-    "solotoRank":4
+    "solotoRank":4,
+    "performance":"JTiYEVCTu4k",
+    "group":"H1"
   },
   {
     "normalId": "AtTeSBPZKbc",
@@ -453,7 +491,9 @@
     "kojinRank":23,
     "solovoRank":2,
     "solodaRank":7,
-    "solotoRank":4
+    "solotoRank":4,
+    "performance":"Wo1wIL4k4_Q",
+    "group":"D1"
   },
   {
     "normalId": "3JY3o6XJeM8",
@@ -475,7 +515,9 @@
     "kojinRank":7,
     "solovoRank":25,
     "solodaRank":12,
-    "solotoRank":20
+    "solotoRank":20,
+    "performance":"4i-9_lzziMI?si",
+    "group":"I2"
   },
   {
     "normalId": "xUL4Mn-Lz1w",
@@ -496,7 +538,9 @@
     "vocalSongs": [1, 2],
     "kojinRank":25,
     "solovoRank":22,
-    "solodaRank":22
+    "solodaRank":22,
+    "performance":"yMbur3ejQuU",
+    "withdrawalNote": "2次審査で脱落"
   },
   {
     "normalId": "ALdXczDduuQ",
@@ -538,7 +582,9 @@
     "kojinRank":24,
     "solovoRank":9,
     "solodaRank":16,
-    "solotoRank":10
+    "solotoRank":10,
+    "performance":"NnZweOIPiuo",
+    "group":"I1"
   },
   {
     "normalId": "FujjcKx5XjE",
@@ -560,7 +606,9 @@
     "kojinRank":13,
     "solovoRank":20,
     "solodaRank":9,
-    "solotoRank":19
+    "solotoRank":19,
+    "performance":"2XPEuh-LhfY",
+    "group":"A1"
   },
   {
     "normalId": "g7y0BMcg0QM",
@@ -582,6 +630,8 @@
     "kojinRank":22,
     "solovoRank":4,
     "solodaRank":23,
-    "solotoRank":17
+    "solotoRank":17,
+    "performance":"y0evALB3G3c",
+    "group":"J2"
   }
 ]
