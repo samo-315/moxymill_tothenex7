@@ -1517,6 +1517,9 @@ async function renderGroupPerformance(){
    最終審査: 課題曲(STAGE1 / STAGE2 / STAGE3)
    ============================================================ */
 
+// STAGE1・2の並び順に使う順位項目(data.jsonの項目名)。順位が高い(数字が小さい)人から表示する
+const FINAL_SORT_FIELD = "groupRank";
+
 // STAGE3のコード(例: "1S")を分解する。1文字目以降の数字=songs.jsonのid、最後の文字 B=BEAUTY / S=SEXY
 function parseFinal3(code){
   if(!code) return null;
@@ -1535,7 +1538,10 @@ async function renderFinalSongs(){
 
   // STAGE1 / STAGE2: 楽曲タイトルを固定で表示し、A・Bに振り分ける
   const abCard = (stageLabel, songTitle, field, extraClass) => {
-    const pick = (letter) => withIdx.filter(({ p }) => String(p[field] || "").trim().toUpperCase() === letter);
+    const rankOf = ({ p }) => hasRank(p, FINAL_SORT_FIELD) ? Number(p[FINAL_SORT_FIELD]) : Infinity; // 順位が無い人は最後
+    const pick = (letter) => withIdx
+      .filter(({ p }) => String(p[field] || "").trim().toUpperCase() === letter)
+      .sort((a, b) => rankOf(a) - rankOf(b));
     return `
     <div class="song-card ${extraClass || ""}">
       <div class="song-header">
