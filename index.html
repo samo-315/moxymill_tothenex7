@@ -1726,6 +1726,8 @@ const archiveBtnEl = document.getElementById("archiveBtn");
 
 function renderTabsForPhase(phaseId){
   const tabs = phaseTabs[phaseId] || [];
+  tabsRowEl.style.display = "";   // アーカイブで隠していたタブ行を戻す
+  tabBeforeArchive = null;
 
   if(tabs.length === 0){
     tabsRowEl.innerHTML = "";
@@ -1753,9 +1755,25 @@ phaseSelectEl.addEventListener("change", () => {
   phaseSelectEl.blur(); // 選択後に色が残り続けないよう、フォーカスを外す
 });
 
+let tabBeforeArchive = null;   // アーカイブを開く前に見ていたタブ
+
 archiveBtnEl.addEventListener("click", () => {
+  if(currentTab === "archive"){
+    // もう一度押したら、元のフェーズ画面に戻る
+    tabsRowEl.style.display = "";
+    if(tabBeforeArchive){
+      switchTab(tabBeforeArchive);
+    }else{
+      archiveBtnEl.classList.remove("active");
+      currentTab = null;
+      gridEl.innerHTML = `<div class="phase-empty">準備中です。公開までお待ちください。</div>`;
+    }
+    tabBeforeArchive = null;
+    return;
+  }
+  tabBeforeArchive = currentTab;
   archiveBtnEl.classList.add("active");
-  tabsRowEl.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+  tabsRowEl.style.display = "none";   // アーカイブ中はフェーズのタブを非表示
   currentTab = "archive";
   summaryToolbarEl.style.display = "none";
   soloRankToolbarEl.style.display = "none";
