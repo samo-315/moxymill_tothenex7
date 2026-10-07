@@ -40,7 +40,10 @@
     "solotoRank":12,
     "performance":"NPpfayW7epg",
     "group":"B2",
-    "groupRank":"3"
+    "groupRank":"3",
+    "final1":"A",
+    "final2":"A",
+    "final3":"4S"
   },
   {
     "normalId": "W-OWkYPu9S8",
@@ -65,7 +68,10 @@
     "solotoRank":2,
     "performance":"NPpfayW7epg",
     "group":"G1",
-    "groupRank":"4"
+    "groupRank":"4",
+    "final1":"B",
+    "final2":"B",
+    "final3":"5S"
   },
   {
     "normalId": "1NwpNh9yHXA",
@@ -89,7 +95,10 @@
     "solotoRank":6,
     "performance":"oqovV5JV0ac",
     "group":"C1",
-    "groupRank":"8"
+    "groupRank":"8",
+    "final1":"A",
+    "final2":"A",
+    "final3":"2B"
   },
   {
     "normalId": "slE8GhOw3IU",
@@ -115,7 +124,10 @@
     "solotoRank":15,
     "performance":"Iy2-FfBq5jk",
     "group":"F2",
-    "groupRank":"6"
+    "groupRank":"6",
+    "final1":"B",
+    "final2":"B",
+    "final3":"4B"
   },
   {
     "normalId": "qahlw4vnDnA",
@@ -140,7 +152,10 @@
     "solotoRank":8,
     "performance":"ztP07jE7hTs",
     "group":"E1",
-    "groupRank":"9"
+    "groupRank":"9",
+    "final1":"A",
+    "final2":"A",
+    "final3":"2S"
   },
   {
     "normalId": "LMPscwYUYYg",
@@ -166,7 +181,10 @@
     "solotoRank":9,
     "performance":"cHvXcc4X5sk",
     "group":"A2",
-    "groupRank":"10"
+    "groupRank":"10",
+    "final1":"B",
+    "final2":"B",
+    "final3":"3B"
   },
   {
     "normalId": "BDMJ6Q48E8E",
@@ -216,7 +234,10 @@
     "solotoRank":6,
     "performance":"YiiamyPnkA0",
     "group":"F1",
-    "groupRank":"11"
+    "groupRank":"11",
+    "final1":"A",
+    "final2":"A",
+    "final3":"null"
   },
   {
     "normalId": "lj_ANrRYk0c",
@@ -241,7 +262,10 @@
     "solotoRank":1,
     "performance":"YPlisqNoNg4",
     "group":"E2",
-    "groupRank":"1"
+    "groupRank":"1",
+    "final1":"A",
+    "final2":"A",
+    "final3":"5B"
   },
   {
     "normalId": "7LoVvy5l2Ec",
@@ -267,7 +291,10 @@
     "solotoRank":3,
     "performance":"wNYY-lLxHDM",
     "group":"C2",
-    "groupRank":"2"
+    "groupRank":"2",
+    "final1":"B",
+    "final2":"B",
+    "final3":"1B"
   },
   {
     "normalId": "td4h8VGm6fg",
@@ -432,7 +459,10 @@
     "solotoRank":13,
     "performance":"FVx1Y50-etI",
     "group":"J1",
-    "groupRank":"12"
+    "groupRank":"12",
+    "final1":"B",
+    "final2":"B",
+    "final3":"null"
   },
   {
     "normalId": "35SdNNrM18g",
@@ -480,7 +510,10 @@
     "solotoRank":4,
     "performance":"JTiYEVCTu4k",
     "group":"H1",
-    "groupRank":"7"
+    "groupRank":"7",
+    "final1":"A",
+    "final2":"A",
+    "final3":"3S"
   },
   {
     "normalId": "AtTeSBPZKbc",
@@ -505,7 +538,10 @@
     "solotoRank":4,
     "performance":"Wo1wIL4k4_Q",
     "group":"D1",
-    "groupRank":"5"
+    "groupRank":"5",
+    "final1":"A",
+    "final2":"A",
+    "final3":"1S"
   },
   {
     "normalId": "3JY3o6XJeM8",
