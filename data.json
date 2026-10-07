@@ -39,7 +39,8 @@
     "solodaRank":14,
     "solotoRank":12,
     "performance":"NPpfayW7epg",
-    "group":"B2"
+    "group":"B2",
+    "groupRank":"3"
   },
   {
     "normalId": "W-OWkYPu9S8",
@@ -63,7 +64,8 @@
     "solodaRank":2,
     "solotoRank":2,
     "performance":"NPpfayW7epg",
-    "group":"G1"
+    "group":"G1",
+    "groupRank":"4"
   },
   {
     "normalId": "1NwpNh9yHXA",
@@ -86,7 +88,8 @@
     "solodaRank":11,
     "solotoRank":6,
     "performance":"oqovV5JV0ac",
-    "group":"C1"
+    "group":"C1",
+    "groupRank":"8"
   },
   {
     "normalId": "slE8GhOw3IU",
@@ -111,7 +114,8 @@
     "solodaRank":14,
     "solotoRank":15,
     "performance":"Iy2-FfBq5jk",
-    "group":"F2"
+    "group":"F2",
+    "groupRank":"6"
   },
   {
     "normalId": "qahlw4vnDnA",
@@ -135,7 +139,8 @@
     "solodaRank":16,
     "solotoRank":8,
     "performance":"ztP07jE7hTs",
-    "group":"E1"
+    "group":"E1",
+    "groupRank":"9"
   },
   {
     "normalId": "LMPscwYUYYg",
@@ -160,7 +165,8 @@
     "solodaRank":19,
     "solotoRank":9,
     "performance":"cHvXcc4X5sk",
-    "group":"A2"
+    "group":"A2",
+    "groupRank":"10"
   },
   {
     "normalId": "BDMJ6Q48E8E",
@@ -209,7 +215,8 @@
     "solodaRank":8,
     "solotoRank":6,
     "performance":"YiiamyPnkA0",
-    "group":"F1"
+    "group":"F1",
+    "groupRank":"11"
   },
   {
     "normalId": "lj_ANrRYk0c",
@@ -233,7 +240,8 @@
     "solodaRank":1,
     "solotoRank":1,
     "performance":"YPlisqNoNg4",
-    "group":"E2"
+    "group":"E2",
+    "groupRank":"1"
   },
   {
     "normalId": "7LoVvy5l2Ec",
@@ -258,7 +266,8 @@
     "solodaRank":5,
     "solotoRank":3,
     "performance":"wNYY-lLxHDM",
-    "group":"C2"
+    "group":"C2",
+    "groupRank":"2"
   },
   {
     "normalId": "td4h8VGm6fg",
@@ -422,7 +431,8 @@
     "solodaRank":5,
     "solotoRank":13,
     "performance":"FVx1Y50-etI",
-    "group":"J1"
+    "group":"J1",
+    "groupRank":"12"
   },
   {
     "normalId": "35SdNNrM18g",
@@ -469,7 +479,8 @@
     "solodaRank":3,
     "solotoRank":4,
     "performance":"JTiYEVCTu4k",
-    "group":"H1"
+    "group":"H1",
+    "groupRank":"7"
   },
   {
     "normalId": "AtTeSBPZKbc",
@@ -493,7 +504,8 @@
     "solodaRank":7,
     "solotoRank":4,
     "performance":"Wo1wIL4k4_Q",
-    "group":"D1"
+    "group":"D1",
+    "groupRank":"5"
   },
   {
     "normalId": "3JY3o6XJeM8",
