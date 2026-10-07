@@ -694,6 +694,44 @@
   color: var(--ink-soft);
 }
 
+/* 最終審査 */
+.stage-tag{
+  display:inline-block;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-size: 11px;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  background: var(--bg);
+  padding: 3px 12px;
+  border-radius: 999px;
+  margin-bottom: 8px;
+}
+.song-card.stage-purple{
+  background: #8062cc;
+  border-color: #8062cc;
+  box-shadow: 0 2px 14px rgba(128,98,204,0.25);
+}
+.stage-purple .stage-tag{
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+}
+.stage-purple .song-title,
+.stage-purple .group-pair-title,
+.stage-purple .group-pos-person span{
+  color: #fff;
+}
+.stage-purple .group-pos-empty{
+  color: rgba(255,255,255,0.75);
+}
+.stage-purple .group-half:first-child{
+  border-right-color: rgba(255,255,255,0.35);
+}
+.stage-purple .group-pos-person img{
+  background: rgba(255,255,255,0.25);
+  border: 2px solid rgba(255,255,255,0.7);
+}
+
 /* アーカイブ */
 .archive-info{
   padding: 12px 16px 16px;
@@ -762,7 +800,7 @@
       <option value="individual">個人動画審査</option>
       <option value="solo">ソロ審査</option>
       <option value="group">グループ審査</option>
-      <option value="final" disabled>最終審査(coming soon...)</option>
+      <option value="final">最終審査</option>
     </select>
     <button class="archive-btn" id="archiveBtn">📁 アーカイブ</button>
   </div>
@@ -862,7 +900,7 @@ function render(){
     renderSummary();
     return;
   }
-  if(currentTab === "ranking" || currentTab === "ranking-solo"){
+  if(currentTab === "ranking" || currentTab === "ranking-solo" || currentTab === "ranking-group"){
     renderRanking();
     return;
   }
@@ -880,6 +918,14 @@ function render(){
   }
   if(currentTab === "group-songs"){
     renderGroupSongs();
+    return;
+  }
+  if(currentTab === "group-performance"){
+    renderGroupPerformance();
+    return;
+  }
+  if(currentTab === "final-songs"){
+    renderFinalSongs();
     return;
   }
   if(currentTab === "archive"){
@@ -977,8 +1023,9 @@ function renderSummary(){
    ============================================================ */
 
 const rankingConfig = {
-  "ranking": { field: "kojinRank", showSongBtn: false },
-  "ranking-solo": { field: "kojinRank", showSongBtn: true },
+  "ranking": { field: "kojinRank", showSongBtn: false, emptyMsg: "まだ個人動画ランキングが設定されていません。" },
+  "ranking-solo": { field: "kojinRank", showSongBtn: true, emptyMsg: "まだ個人動画ランキングが設定されていません。" },
+  "ranking-group": { field: "groupRank", showSongBtn: false, emptyMsg: "まだグループ審査のランキングが設定されていません。" },
 };
 
 function hasRank(p, field){
@@ -996,7 +1043,7 @@ function renderRanking(){
     .sort((a, b) => Number(a.rank) - Number(b.rank));
 
   if(rows.length === 0){
-    gridEl.innerHTML = `<div class="modal-empty">まだ個人動画ランキングが設定されていません。</div>`;
+    gridEl.innerHTML = `<div class="modal-empty">${config.emptyMsg || "まだランキングが設定されていません。"}</div>`;
     return;
   }
 
@@ -1420,6 +1467,129 @@ async function renderArchive(){
 }
 
 /* ============================================================
+   グループ審査: パフォーマンス(group-performance.json)
+   ============================================================ */
+
+let groupPerfData = null;
+let groupPerfLoading = null;
+
+async function ensureGroupPerfLoaded(){
+  if(groupPerfData) return groupPerfData;
+  if(!groupPerfLoading){
+    groupPerfLoading = fetch("group-performance.json", { cache: "no-store" })
+      .then(res => res.ok ? res.json() : [])
+      .catch(() => []);
+  }
+  groupPerfData = await groupPerfLoading;
+  return groupPerfData;
+}
+
+async function renderGroupPerformance(){
+  gridEl.innerHTML = `<div class="modal-empty">読み込み中...</div>`;
+
+  const list = await ensureGroupPerfLoaded();
+  if(currentTab !== "group-performance") return; // 読み込み中に別タブへ移動した場合は描画しない
+  if(!list || list.length === 0){
+    gridEl.innerHTML = `<div class="modal-empty">パフォーマンス動画がまだ登録されていません。</div>`;
+    return;
+  }
+
+  gridEl.innerHTML = list.map((m) => {
+    const thumbUrl = `https://img.youtube.com/vi/${m.id}/maxresdefault.jpg`;
+    const thumbFallback = `https://img.youtube.com/vi/${m.id}/hqdefault.jpg`;
+    return `
+    <div class="card">
+      <div class="video-wrap ratio-16-9" data-id="${m.id}">
+        <img src="${thumbUrl}" alt="${m.title}" loading="lazy" onerror="this.onerror=null;this.src='${thumbFallback}';"><div class="play-badge"></div>
+      </div>
+      <div class="archive-info">
+        <div class="archive-title">${m.title}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  gridEl.querySelectorAll(".video-wrap").forEach(el => {
+    el.addEventListener("click", onPlayClick, { once: true });
+  });
+}
+
+/* ============================================================
+   最終審査: 課題曲(STAGE1 / STAGE2 / STAGE3)
+   ============================================================ */
+
+// STAGE3のコード(例: "1S")を分解する。1文字目以降の数字=songs.jsonのid、最後の文字 B=BEAUTY / S=SEXY
+function parseFinal3(code){
+  if(!code) return null;
+  const m = String(code).trim().match(/^(\d+)([BSbs])$/);
+  if(!m) return null;
+  return { songId: Number(m[1]), position: m[2].toUpperCase() === "B" ? "BEAUTY" : "SEXY" };
+}
+
+async function renderFinalSongs(){
+  gridEl.innerHTML = `<div class="modal-empty">読み込み中...</div>`;
+
+  const list = await ensureSongsLoaded();
+  if(currentTab !== "final-songs") return; // 読み込み中に別タブへ移動した場合は描画しない
+
+  const withIdx = people.map((p, idx) => ({ p, idx }));
+
+  // STAGE1 / STAGE2: 楽曲タイトルを固定で表示し、A・Bに振り分ける
+  const abCard = (stageLabel, songTitle, field, extraClass) => {
+    const pick = (letter) => withIdx.filter(({ p }) => String(p[field] || "").trim().toUpperCase() === letter);
+    return `
+    <div class="song-card ${extraClass || ""}">
+      <div class="song-header">
+        <span class="stage-tag">${stageLabel}</span>
+        <div class="song-title">${songTitle}</div>
+      </div>
+      <div class="group-split">
+        <div class="group-half">
+          <div class="group-pair-title">A</div>
+          <div class="group-pos-people">${renderMiniPeople(pick("A"))}</div>
+        </div>
+        <div class="group-half">
+          <div class="group-pair-title">B</div>
+          <div class="group-pos-people">${renderMiniPeople(pick("B"))}</div>
+        </div>
+      </div>
+    </div>`;
+  };
+
+  let html = "";
+  html += abCard("STAGE1", "My Season", "final1", "stage-purple");
+  html += abCard("STAGE2", "I'll Be There", "final2", "");
+
+  // STAGE3: songs.jsonと連携し、楽曲ごとに BEAUTY / SEXY に振り分ける
+  const withFinal3 = withIdx.map(({ p, idx }) => ({ p, idx, parsed: parseFinal3(p.final3) }));
+  (list || []).forEach(song => {
+    const beauty = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "BEAUTY");
+    const sexy = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "SEXY");
+    if(beauty.length === 0 && sexy.length === 0) return;
+    html += `
+    <div class="song-card">
+      <div class="song-header">
+        <span class="stage-tag">STAGE3</span><br>
+        <img class="song-jacket" src="${song.jacket}" alt="${song.title}" loading="lazy">
+        <div class="song-title">${song.title}</div>
+        <div class="song-genre">${song.genre}</div>
+      </div>
+      <div class="group-split">
+        <div class="group-half">
+          <div class="group-pair-title">BEAUTY</div>
+          <div class="group-pos-people">${renderMiniPeople(beauty)}</div>
+        </div>
+        <div class="group-half">
+          <div class="group-pair-title">SEXY</div>
+          <div class="group-pos-people">${renderMiniPeople(sexy)}</div>
+        </div>
+      </div>
+    </div>`;
+  });
+
+  gridEl.innerHTML = html;
+}
+
+/* ============================================================
    プロフィールポップアップ
    ============================================================ */
 
@@ -1536,8 +1706,12 @@ const phaseTabs = {
   ],
   group: [
     { key: "group-songs", label: "課題曲" },
+    { key: "group-performance", label: "パフォーマンス" },
+    { key: "ranking-group", label: "ランキング" },
   ],
-  final: [],
+  final: [
+    { key: "final-songs", label: "課題曲" },
+  ],
 };
 
 const phaseSelectEl = document.getElementById("phaseSelect");
