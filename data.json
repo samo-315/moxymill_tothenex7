@@ -209,7 +209,8 @@
     "solodaRank":10,
     "solotoRank":14,
     "performance":"5fDTJoXlBbI",
-    "group":"D2"
+    "group":"D2",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "hbtPtLLF9oc",
@@ -386,7 +387,8 @@
     "solodaRank":13,
     "solotoRank":15,
     "performance":"fRIJlNdTmSo",
-    "group":"G2"
+    "group":"G2",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "UuSP7aHk1jI",
@@ -411,7 +413,8 @@
     "solodaRank":16,
     "solotoRank":11,
     "performance":"QxIPx5FVp9I",
-    "group":"B1"
+    "group":"B1",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "9k2egyfe_fE",
@@ -486,7 +489,8 @@
     "solodaRank":4,
     "solotoRank":18,
     "performance":"F65PvQGeEog",
-    "group":"H2"
+    "group":"H2",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "j4KL6qOpFyE",
@@ -565,7 +569,8 @@
     "solodaRank":12,
     "solotoRank":20,
     "performance":"4i-9_lzziMI",
-    "group":"I2"
+    "group":"I2",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "xUL4Mn-Lz1w",
@@ -632,7 +637,8 @@
     "solodaRank":16,
     "solotoRank":10,
     "performance":"NnZweOIPiuo",
-    "group":"I1"
+    "group":"I1",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "FujjcKx5XjE",
@@ -656,7 +662,8 @@
     "solodaRank":9,
     "solotoRank":19,
     "performance":"2XPEuh-LhfY",
-    "group":"A1"
+    "group":"A1",
+    "withdrawalNote": "グループ審査で脱落"
   },
   {
     "normalId": "g7y0BMcg0QM",
@@ -680,6 +687,7 @@
     "solodaRank":23,
     "solotoRank":17,
     "performance":"y0evALB3G3c",
-    "group":"J2"
+    "group":"J2",
+    "withdrawalNote": "グループ審査で脱落"
   }
 ]
