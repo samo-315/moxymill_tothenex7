@@ -41,8 +41,8 @@
     "performance":"NPpfayW7epg",
     "group":"B2",
     "groupRank":"3",
-    "final1":"A",
-    "final2":"A",
+    "final1":"A3",
+    "final2":"A2",
     "final3":"4S"
   },
   {
@@ -69,9 +69,10 @@
     "performance":"NPpfayW7epg",
     "group":"G1",
     "groupRank":"4",
-    "final1":"B",
-    "final2":"B",
-    "final3":"5S"
+    "final1":"B3",
+    "final2":"B5",
+    "final3":"5S",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "1NwpNh9yHXA",
@@ -96,9 +97,10 @@
     "performance":"oqovV5JV0ac",
     "group":"C1",
     "groupRank":"8",
-    "final1":"B",
-    "final2":"B",
-    "final3":"2B"
+    "final1":"B5",
+    "final2":"B3",
+    "final3":"2Ba",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "slE8GhOw3IU",
@@ -125,8 +127,8 @@
     "performance":"Iy2-FfBq5jk",
     "group":"F2",
     "groupRank":"6",
-    "final1":"B",
-    "final2":"B",
+    "final1":"B1",
+    "final2":"B4",
     "final3":"4B"
   },
   {
@@ -153,9 +155,9 @@
     "performance":"ztP07jE7hTs",
     "group":"E1",
     "groupRank":"9",
-    "final1":"A",
-    "final2":"A",
-    "final3":"2S"
+    "final1":"A5",
+    "final2":"A1",
+    "final3":"2Sa"
   },
   {
     "normalId": "LMPscwYUYYg",
@@ -182,9 +184,10 @@
     "performance":"cHvXcc4X5sk",
     "group":"A2",
     "groupRank":"10",
-    "final1":"B",
-    "final2":"B",
-    "final3":"3B"
+    "final1":"B2",
+    "final2":"B6",
+    "final3":"3B",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "BDMJ6Q48E8E",
@@ -236,9 +239,9 @@
     "performance":"YiiamyPnkA0",
     "group":"F1",
     "groupRank":"11",
-    "final1":"A",
-    "final2":"A",
-    "final3":"null"
+    "final1":"A2",
+    "final2":"A4",
+    "final3":"2Bb"
   },
   {
     "normalId": "lj_ANrRYk0c",
@@ -264,9 +267,10 @@
     "performance":"YPlisqNoNg4",
     "group":"E2",
     "groupRank":"1",
-    "final1":"A",
-    "final2":"A",
-    "final3":"5B"
+    "final1":"A6",
+    "final2":"A6",
+    "final3":"5B",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "7LoVvy5l2Ec",
@@ -293,8 +297,8 @@
     "performance":"wNYY-lLxHDM",
     "group":"C2",
     "groupRank":"2",
-    "final1":"B",
-    "final2":"B",
+    "final1":"B6",
+    "final2":"B2",
     "final3":"1B"
   },
   {
@@ -463,9 +467,10 @@
     "performance":"FVx1Y50-etI",
     "group":"J1",
     "groupRank":"12",
-    "final1":"B",
-    "final2":"B",
-    "final3":"null"
+    "final1":"B5",
+    "final2":"B1",
+    "final3":"2Sb",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "35SdNNrM18g",
@@ -515,9 +520,10 @@
     "performance":"JTiYEVCTu4k",
     "group":"H1",
     "groupRank":"7",
-    "final1":"A",
-    "final2":"A",
-    "final3":"3S"
+    "final1":"A1",
+    "final2":"A5",
+    "final3":"3S",
+    "withdrawalNote": "セミファイナル審査で脱落"
   },
   {
     "normalId": "AtTeSBPZKbc",
@@ -543,8 +549,8 @@
     "performance":"Wo1wIL4k4_Q",
     "group":"D1",
     "groupRank":"5",
-    "final1":"A",
-    "final2":"A",
+    "final1":"A4",
+    "final2":"A3",
     "final3":"1S"
   },
   {
