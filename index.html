@@ -721,6 +721,15 @@
 .stage-purple .group-pos-person span{
   color: #fff;
 }
+.final-genre{
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin: 10px 0 6px;
+}
+.final-genre:first-child{ margin-top: 0; }
+.stage-purple .final-genre{ color: rgba(255,255,255,0.85); }
 .stage-purple .group-pos-empty{
   color: rgba(255,255,255,0.75);
 }
@@ -800,7 +809,8 @@
       <option value="individual">個人動画審査</option>
       <option value="solo">ソロ審査</option>
       <option value="group">グループ審査</option>
-      <option value="final">最終審査</option>
+      <option value="final">セミファイナル審査</option>
+      <option value="finalround" disabled>ファイナル審査</option>
     </select>
     <button class="archive-btn" id="archiveBtn">📁 アーカイブ</button>
   </div>
@@ -900,7 +910,7 @@ function render(){
     renderSummary();
     return;
   }
-  if(currentTab === "ranking" || currentTab === "ranking-solo" || currentTab === "ranking-group"){
+  if(currentTab === "ranking" || currentTab === "ranking-solo" || currentTab === "ranking-group" || currentTab === "ranking-semi"){
     renderRanking();
     return;
   }
@@ -1026,6 +1036,7 @@ const rankingConfig = {
   "ranking": { field: "kojinRank", showSongBtn: false, emptyMsg: "まだ個人動画ランキングが設定されていません。" },
   "ranking-solo": { field: "kojinRank", showSongBtn: true, emptyMsg: "まだ個人動画ランキングが設定されていません。" },
   "ranking-group": { field: "groupRank", showSongBtn: false, emptyMsg: "まだグループ審査のランキングが設定されていません。" },
+  "ranking-semi": { field: "semiRank", showSongBtn: false, emptyMsg: "まだセミファイナル審査のランキングが設定されていません。" },
 };
 
 function hasRank(p, field){
@@ -1521,11 +1532,20 @@ async function renderGroupPerformance(){
 const FINAL_SORT_FIELD = "groupRank";
 
 // STAGE3のコード(例: "1S")を分解する。1文字目以降の数字=songs.jsonのid、最後の文字 B=BEAUTY / S=SEXY
+// 末尾に小文字 a / b が付く場合(例: "1Sa")は「同じ曲でも別グループ」を表す
 function parseFinal3(code){
   if(!code) return null;
-  const m = String(code).trim().match(/^(\d+)([BSbs])$/);
+  const m = String(code).trim().match(/^(\d+)([BSbs])([ab])?$/);
   if(!m) return null;
-  return { songId: Number(m[1]), position: m[2].toUpperCase() === "B" ? "BEAUTY" : "SEXY" };
+  return { songId: Number(m[1]), position: m[2].toUpperCase() === "B" ? "BEAUTY" : "SEXY", sub: m[3] || "" };
+}
+
+// STAGE1・2のコード(例: "A1")を分解する。1文字目=A/Bグループ、2文字目の数字=songs.jsonのid(ジャンル)
+function parseFinal12(code){
+  if(!code) return null;
+  const m = String(code).trim().match(/^([ABab])(\d+)?$/);
+  if(!m) return null;
+  return { letter: m[1].toUpperCase(), songId: m[2] ? Number(m[2]) : null };
 }
 
 async function renderFinalSongs(){
@@ -1539,9 +1559,24 @@ async function renderFinalSongs(){
   // STAGE1 / STAGE2: 楽曲タイトルを固定で表示し、A・Bに振り分ける
   const abCard = (stageLabel, songTitle, field, extraClass) => {
     const rankOf = ({ p }) => hasRank(p, FINAL_SORT_FIELD) ? Number(p[FINAL_SORT_FIELD]) : Infinity; // 順位が無い人は最後
-    const pick = (letter) => withIdx
-      .filter(({ p }) => String(p[field] || "").trim().toUpperCase() === letter)
-      .sort((a, b) => rankOf(a) - rankOf(b));
+    const genreOf = (id) => {
+      const s = (list || []).find(x => x.id === id);
+      return s ? s.genre : "";
+    };
+    // A/Bごとに、ジャンル(数字=songs.jsonのid)別に分けて表示する
+    const half = (letter) => {
+      const members = withIdx
+        .map(({ p, idx }) => ({ p, idx, parsed: parseFinal12(p[field]) }))
+        .filter(({ parsed }) => parsed && parsed.letter === letter)
+        .sort((a, b) => rankOf(a) - rankOf(b));
+      if(members.length === 0) return renderMiniPeople([]);
+      const ids = [...new Set(members.map(m => m.parsed.songId))]
+        .sort((a, b) => (a === null ? 1 : b === null ? -1 : a - b));
+      return ids.map(id => {
+        const label = id === null ? "" : `<div class="final-genre">${genreOf(id)}</div>`;
+        return label + renderMiniPeople(members.filter(m => m.parsed.songId === id));
+      }).join("");
+    };
     return `
     <div class="song-card ${extraClass || ""}">
       <div class="song-header">
@@ -1551,11 +1586,11 @@ async function renderFinalSongs(){
       <div class="group-split">
         <div class="group-half">
           <div class="group-pair-title">A</div>
-          <div class="group-pos-people">${renderMiniPeople(pick("A"))}</div>
+          <div class="group-pos-people">${half("A")}</div>
         </div>
         <div class="group-half">
           <div class="group-pair-title">B</div>
-          <div class="group-pos-people">${renderMiniPeople(pick("B"))}</div>
+          <div class="group-pos-people">${half("B")}</div>
         </div>
       </div>
     </div>`;
@@ -1568,10 +1603,12 @@ async function renderFinalSongs(){
   // STAGE3: songs.jsonと連携し、楽曲ごとに BEAUTY / SEXY に振り分ける
   const withFinal3 = withIdx.map(({ p, idx }) => ({ p, idx, parsed: parseFinal3(p.final3) }));
   (list || []).forEach(song => {
-    const beauty = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "BEAUTY");
-    const sexy = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "SEXY");
-    if(beauty.length === 0 && sexy.length === 0) return;
-    html += `
+    // 同じ曲でも、末尾の a / b が違えば別の枠に分ける(無印 → a → b の順)
+    ["", "a", "b"].forEach(sub => {
+      const beauty = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "BEAUTY" && parsed.sub === sub);
+      const sexy = withFinal3.filter(({ parsed }) => parsed && parsed.songId === song.id && parsed.position === "SEXY" && parsed.sub === sub);
+      if(beauty.length === 0 && sexy.length === 0) return;
+      html += `
     <div class="song-card">
       <div class="song-header">
         <span class="stage-tag">STAGE3</span><br>
@@ -1590,6 +1627,7 @@ async function renderFinalSongs(){
         </div>
       </div>
     </div>`;
+    });
   });
 
   gridEl.innerHTML = html;
@@ -1717,6 +1755,7 @@ const phaseTabs = {
   ],
   final: [
     { key: "final-songs", label: "課題曲" },
+    { key: "ranking-semi", label: "ランキング" },
   ],
 };
 
