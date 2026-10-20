@@ -712,6 +712,8 @@
   border-color: #8062cc;
   box-shadow: 0 2px 14px rgba(128,98,204,0.25);
 }
+.perf-stage{ grid-column: 1 / -1; margin-top: 4px; }
+.perf-stage .stage-tag{ margin-bottom: 0; }
 .stage-purple .stage-tag{
   background: rgba(255,255,255,0.22);
   color: #fff;
@@ -932,6 +934,10 @@ function render(){
   }
   if(currentTab === "group-performance"){
     renderGroupPerformance();
+    return;
+  }
+  if(currentTab === "semi-performance"){
+    renderSemiPerformance();
     return;
   }
   if(currentTab === "final-songs"){
@@ -1525,6 +1531,60 @@ async function renderGroupPerformance(){
 }
 
 /* ============================================================
+   セミファイナル審査: パフォーマンス(semifinal-performance.json)
+   ============================================================ */
+
+let semiPerfData = null;
+let semiPerfLoading = null;
+
+async function ensureSemiPerfLoaded(){
+  if(semiPerfData) return semiPerfData;
+  if(!semiPerfLoading){
+    semiPerfLoading = fetch("semifinal-performance.json", { cache: "no-store" })
+      .then(res => res.ok ? res.json() : [])
+      .catch(() => []);
+  }
+  semiPerfData = await semiPerfLoading;
+  return semiPerfData;
+}
+
+async function renderSemiPerformance(){
+  gridEl.innerHTML = `<div class="modal-empty">読み込み中...</div>`;
+
+  const list = await ensureSemiPerfLoaded();
+  if(currentTab !== "semi-performance") return; // 読み込み中に別タブへ移動した場合は描画しない
+  if(!list || list.length === 0){
+    gridEl.innerHTML = `<div class="modal-empty">パフォーマンス動画がまだ登録されていません。</div>`;
+    return;
+  }
+
+  let lastStage = null;
+  gridEl.innerHTML = list.map((m) => {
+    const thumbUrl = `https://img.youtube.com/vi/${m.id}/maxresdefault.jpg`;
+    const thumbFallback = `https://img.youtube.com/vi/${m.id}/hqdefault.jpg`;
+    const stage = String(m.stage || "");
+    let head = "";
+    if(stage && stage !== lastStage){
+      head = `<div class="perf-stage"><span class="stage-tag">STAGE${stage}</span></div>`;
+      lastStage = stage;
+    }
+    return head + `
+    <div class="card">
+      <div class="video-wrap ratio-16-9" data-id="${m.id}">
+        <img src="${thumbUrl}" alt="${m.title}" loading="lazy" onerror="this.onerror=null;this.src='${thumbFallback}';"><div class="play-badge"></div>
+      </div>
+      <div class="archive-info">
+        <div class="archive-title">${m.title}</div>
+      </div>
+    </div>`;
+  }).join("");
+
+  gridEl.querySelectorAll(".video-wrap").forEach(el => {
+    el.addEventListener("click", onPlayClick, { once: true });
+  });
+}
+
+/* ============================================================
    最終審査: 課題曲(STAGE1 / STAGE2 / STAGE3)
    ============================================================ */
 
@@ -1755,6 +1815,7 @@ const phaseTabs = {
   ],
   final: [
     { key: "final-songs", label: "課題曲" },
+    { key: "semi-performance", label: "パフォーマンス" },
     { key: "ranking-semi", label: "ランキング" },
   ],
 };
