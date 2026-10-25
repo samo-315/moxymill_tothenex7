@@ -743,6 +743,50 @@
   border: 2px solid rgba(255,255,255,0.7);
 }
 
+/* ファイナル審査 */
+.final-team{ margin-bottom: 18px; }
+.final-team:last-child{ margin-bottom: 0; }
+.final-team-title{
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-size: 13px;
+  letter-spacing: .06em;
+  color: var(--ink-soft);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.stage-purple .final-team-title{ color: rgba(255,255,255,0.9); }
+.pass-card{
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  box-shadow: 0 2px 14px rgba(41,35,63,0.07);
+  overflow: hidden;
+}
+.pass-photo-wrap{ position: relative; }
+.pass-photo{
+  display:block;
+  width:100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--bg);
+}
+.pass-charm{
+  position:absolute;
+  left: 12px;
+  top: 12px;
+  background: #8062cc;
+  color:#fff;
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  font-weight: 900;
+  font-size: 12px;
+  letter-spacing: .06em;
+  padding: 4px 14px;
+  border-radius: 999px;
+}
+.pass-info{ padding: 14px 16px 18px; }
+.pass-info .profile-name{ margin-bottom: 12px; }
+
 /* アーカイブ */
 .archive-info{
   padding: 12px 16px 16px;
@@ -812,7 +856,7 @@
       <option value="solo">ソロ審査</option>
       <option value="group">グループ審査</option>
       <option value="final">セミファイナル審査</option>
-      <option value="finalround" disabled>ファイナル審査</option>
+      <option value="finalround">ファイナル審査</option>
     </select>
     <button class="archive-btn" id="archiveBtn">📁 アーカイブ</button>
   </div>
@@ -938,6 +982,18 @@ function render(){
   }
   if(currentTab === "semi-performance"){
     renderSemiPerformance();
+    return;
+  }
+  if(currentTab === "finalround-songs"){
+    renderFinalRoundSongs();
+    return;
+  }
+  if(currentTab === "finalround-performance"){
+    renderFinalRoundPerformance();
+    return;
+  }
+  if(currentTab === "finalround-pass"){
+    renderFinalRoundPass();
     return;
   }
   if(currentTab === "final-songs"){
@@ -1585,7 +1641,102 @@ async function renderSemiPerformance(){
 }
 
 /* ============================================================
-   最終審査: 課題曲(STAGE1 / STAGE2 / STAGE3)
+   ファイナル審査: 課題曲 / パフォーマンス / 合格者
+   ============================================================ */
+
+// data.jsonのfinal(例: "AB")を分解する。1文字目=チーム(A〜C)、2文字目=B(BEAUTY) / S(SEXY)
+function parseFinalRound(code){
+  if(!code) return null;
+  const m = String(code).trim().match(/^([A-Ca-c])([BSbs])$/);
+  if(!m) return null;
+  return { team: m[1].toUpperCase(), position: m[2].toUpperCase() === "B" ? "BEAUTY" : "SEXY" };
+}
+
+function renderFinalRoundSongs(){
+  const withIdx = people.map((p, idx) => ({ p, idx, parsed: parseFinalRound(p.final) }));
+
+  const songCard = (title, extraClass) => {
+    const teams = ["A", "B", "C"].map(t => {
+      const pick = (pos) => withIdx.filter(({ parsed }) => parsed && parsed.team === t && parsed.position === pos);
+      return `
+      <div class="final-team">
+        <div class="final-team-title">TEAM ${t}</div>
+        <div class="group-split">
+          <div class="group-half">
+            <div class="group-pair-title">BEAUTY</div>
+            <div class="group-pos-people">${renderMiniPeople(pick("BEAUTY"))}</div>
+          </div>
+          <div class="group-half">
+            <div class="group-pair-title">SEXY</div>
+            <div class="group-pos-people">${renderMiniPeople(pick("SEXY"))}</div>
+          </div>
+        </div>
+      </div>`;
+    }).join("");
+    return `
+    <div class="song-card ${extraClass || ""}">
+      <div class="song-header">
+        <div class="song-title">${title}</div>
+      </div>
+      ${teams}
+    </div>`;
+  };
+
+  gridEl.innerHTML = songCard("My Season", "stage-purple") + songCard("This is me", "");
+}
+
+function renderFinalRoundPerformance(){
+  const id = "-VGAPixbcR0";
+  const thumbUrl = `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
+  const thumbFallback = `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+  gridEl.innerHTML = `
+    <div class="card">
+      <div class="video-wrap ratio-16-9" data-id="${id}">
+        <img src="${thumbUrl}" alt="ファイナル審査 パフォーマンス" loading="lazy" onerror="this.onerror=null;this.src='${thumbFallback}';"><div class="play-badge"></div>
+      </div>
+    </div>`;
+  gridEl.querySelectorAll(".video-wrap").forEach(el => {
+    el.addEventListener("click", onPlayClick, { once: true });
+  });
+}
+
+function renderFinalRoundPass(){
+  const rows = people
+    .map((p, idx) => ({ p, idx }))
+    .filter(({ p }) => p.pass !== undefined && p.pass !== null && String(p.pass).trim() !== "");
+
+  if(rows.length === 0){
+    gridEl.innerHTML = `<div class="modal-empty">まだ合格者が設定されていません。</div>`;
+    return;
+  }
+
+  gridEl.innerHTML = rows.map(({ p, idx }) => {
+    const photoFile = `images/person${String(idx + 1).padStart(2, "0")}.jpg`;
+    return `
+    <div class="pass-card">
+      <div class="pass-photo-wrap">
+        <img class="pass-photo" src="${photoFile}" alt="${p.name}" loading="lazy">
+        <span class="pass-charm">${p.pass}</span>
+      </div>
+      <div class="pass-info">
+        <div class="profile-name">
+          <span class="name">${p.name}</span>
+          <span class="reading">${p.reading}</span>
+        </div>
+        <div class="profile-grid">
+          <div class="pf-item"><span class="pf-label">生年月日</span><b>${p.birthday}</b></div>
+          <div class="pf-item"><span class="pf-label">出身地</span><b>${p.hometown}</b></div>
+          <div class="pf-item"><span class="pf-label">特技</span><b>${p.specialty}</b></div>
+          <div class="pf-item"><span class="pf-label">趣味</span><b>${p.hobby}</b></div>
+          <div class="pf-item"><span class="pf-label">MBTI</span><b>${p.mbti}</b></div>
+        </div>
+      </div>
+    </div>`;
+  }).join("");
+}
+
+/* ============================================================
+   セミファイナル審査: 課題曲(STAGE1 / STAGE2 / STAGE3)
    ============================================================ */
 
 // STAGE1・2の並び順に使う順位項目(data.jsonの項目名)。順位が高い(数字が小さい)人から表示する
@@ -1812,6 +1963,11 @@ const phaseTabs = {
     { key: "group-songs", label: "課題曲" },
     { key: "group-performance", label: "パフォーマンス" },
     { key: "ranking-group", label: "ランキング" },
+  ],
+  finalround: [
+    { key: "finalround-songs", label: "課題曲" },
+    { key: "finalround-performance", label: "パフォーマンス" },
+    { key: "finalround-pass", label: "合格者" },
   ],
   final: [
     { key: "final-songs", label: "課題曲" },
