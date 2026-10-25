@@ -44,7 +44,8 @@
     "final1":"A3",
     "final2":"A2",
     "final3":"4S",
-    "semiRank":"1"
+    "semiRank":"1",
+    "final":"AS"
   },
   {
     "normalId": "W-OWkYPu9S8",
@@ -131,7 +132,9 @@
     "final1":"B1",
     "final2":"B4",
     "final3":"4B",
-    "semiRank":"6"
+    "semiRank":"6",
+    "final":"CS",
+    "pass":"SEXY"
   },
   {
     "normalId": "qahlw4vnDnA",
@@ -160,7 +163,8 @@
     "final1":"A5",
     "final2":"A1",
     "final3":"2Sa",
-    "semiRank":"5"
+    "semiRank":"5",
+    "final":"BS"
   },
   {
     "normalId": "LMPscwYUYYg",
@@ -245,7 +249,8 @@
     "final1":"A2",
     "final2":"A4",
     "final3":"2Bb",
-    "semiRank":"4"
+    "semiRank":"4",
+    "final":"CB"
   },
   {
     "normalId": "lj_ANrRYk0c",
@@ -304,7 +309,9 @@
     "final1":"B6",
     "final2":"B2",
     "final3":"1B",
-    "semiRank":"2"
+    "semiRank":"2",
+    "final":"AB",
+    "pass":"BEAUTY"
   },
   {
     "normalId": "td4h8VGm6fg",
@@ -557,7 +564,8 @@
     "final1":"A4",
     "final2":"A3",
     "final3":"1S",
-    "semiRank":"3"
+    "semiRank":"3",
+    "final":"BB"
   },
   {
     "normalId": "3JY3o6XJeM8",
