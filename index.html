@@ -1700,7 +1700,7 @@ async function renderSemiPerformance(){
    memory: image2フォルダの画像を1から順に、スクロールに合わせて下へ出していく
    ============================================================ */
 
-const MEMORY_DIRS = "images2";   // 画像フォルダ(見つかったほうを使う)
+const MEMORY_DIRS = ["images2", "image2"];   // 画像フォルダ(見つかったほうを使う)
 const MEMORY_EXT = "jpeg";      // 拡張子
 const MEMORY_COUNT = 50;        // 枚数(1.jpeg 〜 50.jpeg)
 // 画面下部に小さく表示する出典リンク。空配列なら非表示
@@ -1746,6 +1746,8 @@ function renderMemory(){
       requestAnimationFrame(() => requestAnimationFrame(() => item.classList.add("show")));
       next = no + 1;
       loading = false;
+      // 次の1枚を先に読み込んでおき、表示するときに待たないようにする
+      if(next <= MEMORY_COUNT){ new Image().src = `${MEMORY_DIRS[memDirIdx]}/${next}.${MEMORY_EXT}`; }
       if(next > MEMORY_COUNT){
         // 最後の1枚まで出したら監視をやめ、そのまま表示し続ける
         if(memObserver){ memObserver.disconnect(); memObserver = null; }
@@ -1768,11 +1770,15 @@ function renderMemory(){
       // 画像が見つからなければそこで終了
       loading = false;
       next = MEMORY_COUNT + 1;
+      if(no === 1) wrap.insertBefore(Object.assign(document.createElement("div"), { className: "modal-empty", textContent: "画像を読み込めませんでした。" }), sentinel);
       wrap.classList.add("done");
       if(memObserver){ memObserver.disconnect(); memObserver = null; }
     };
     img.src = `${MEMORY_DIRS[memDirIdx]}/${no}.${MEMORY_EXT}`;
   };
+
+  // 1枚目は開いた時点で自動的に浮かび上がらせる
+  addNext();
 
   memObserver = new IntersectionObserver((entries) => {
     if(entries.some(e => e.isIntersecting)) addNext();
