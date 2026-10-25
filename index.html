@@ -6,7 +6,7 @@
 <title>moxymill tothenex7 まとめ</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@500;700;900&family=Noto+Sans+JP:wght@400;500;700&family=Satisfy&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@3.0.0/dist/chartjs-adapter-date-fns.bundle.min.js"></script><style>
   :root{
@@ -767,6 +767,19 @@
   box-shadow: 0 2px 14px rgba(41,35,63,0.12);
 }
 .mem-sentinel{ height: 2px; }
+.mem-final{
+  margin: 28px 0 8px;
+  text-align: center;
+  font-family: 'Satisfy', 'Zen Kaku Gothic New', cursive;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.6;
+  color: var(--ink);
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+.mem-final.show{ opacity: 1; transform: none; }
 .memory-source{
   position: fixed;
   left: 0; right: 0; bottom: 0;
@@ -1703,6 +1716,9 @@ async function renderSemiPerformance(){
 const MEMORY_DIRS = ["images2", "image2"];   // 画像フォルダ(見つかったほうを使う)
 const MEMORY_EXT = "jpeg";      // 拡張子
 const MEMORY_COUNT = 50;        // 枚数(1.jpeg 〜 50.jpeg)
+// 最後の写真の下に表示する一行の文章。空なら表示しない
+const MEMORY_FINAL_MESSAGE = "Thanks to everyone involved in \"to the nex7\".";
+
 // 画面下部に小さく表示する出典リンク。空配列なら非表示
 const MEMORY_SOURCES = [
   { label: "X(moxy_official_)", url: "https://x.com/moxy_official_?s=11" },
@@ -1753,6 +1769,13 @@ function renderMemory(){
         if(memObserver){ memObserver.disconnect(); memObserver = null; }
         sentinel.remove();
         wrap.classList.add("done");
+        if(MEMORY_FINAL_MESSAGE){
+          const msg = document.createElement("div");
+          msg.className = "mem-final";
+          msg.textContent = MEMORY_FINAL_MESSAGE;
+          wrap.appendChild(msg);
+          setTimeout(() => msg.classList.add("show"), 900);   // 最後の写真が現れたあと、少し間を置いて浮かび上がらせる
+        }
       }else if(memObserver){
         // まだ画面の下端付近にいるなら続けて出す
         memObserver.unobserve(sentinel);
