@@ -1655,21 +1655,18 @@ function parseFinalRound(code){
 function renderFinalRoundSongs(){
   const withIdx = people.map((p, idx) => ({ p, idx, parsed: parseFinalRound(p.final) }));
 
-  const songCard = (title, extraClass) => {
+  const songCard = (title, extraClass, sexyFirst) => {
     const teams = ["A", "B", "C"].map(t => {
       const pick = (pos) => withIdx.filter(({ parsed }) => parsed && parsed.team === t && parsed.position === pos);
       return `
       <div class="final-team">
         <div class="final-team-title">TEAM ${t}</div>
         <div class="group-split">
+          ${(sexyFirst ? ["SEXY", "BEAUTY"] : ["BEAUTY", "SEXY"]).map(pos => `
           <div class="group-half">
-            <div class="group-pair-title">BEAUTY</div>
-            <div class="group-pos-people">${renderMiniPeople(pick("BEAUTY"))}</div>
-          </div>
-          <div class="group-half">
-            <div class="group-pair-title">SEXY</div>
-            <div class="group-pos-people">${renderMiniPeople(pick("SEXY"))}</div>
-          </div>
+            <div class="group-pair-title">${pos}</div>
+            <div class="group-pos-people">${renderMiniPeople(pick(pos))}</div>
+          </div>`).join("")}
         </div>
       </div>`;
     }).join("");
@@ -1682,7 +1679,7 @@ function renderFinalRoundSongs(){
     </div>`;
   };
 
-  gridEl.innerHTML = songCard("My Season", "stage-purple") + songCard("This is me", "");
+  gridEl.innerHTML = songCard("My Season", "stage-purple", true) + songCard("This is me", "");
 }
 
 function renderFinalRoundPerformance(){
@@ -1703,7 +1700,12 @@ function renderFinalRoundPerformance(){
 function renderFinalRoundPass(){
   const rows = people
     .map((p, idx) => ({ p, idx }))
-    .filter(({ p }) => p.pass !== undefined && p.pass !== null && String(p.pass).trim() !== "");
+    .filter(({ p }) => p.pass !== undefined && p.pass !== null && String(p.pass).trim() !== "")
+    // SEXYの人を先に表示する(finalの値が無い人は後ろ)
+    .sort((a, b) => {
+      const rank = ({ p }) => { const f = parseFinalRound(p.final); return f ? (f.position === "SEXY" ? 0 : 1) : 2; };
+      return rank(a) - rank(b);
+    });
 
   if(rows.length === 0){
     gridEl.innerHTML = `<div class="modal-empty">まだ合格者が設定されていません。</div>`;
